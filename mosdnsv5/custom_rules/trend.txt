@@ -1,0 +1,2 @@
+domain:trendnet.org
+domain:trendmicro.com

@@ -79,6 +79,23 @@ plugins:
       files:
         - ./online_rules/reject_list.txt
 
+  - tag: trend_domain
+    type: domain_set
+    args:
+      files:
+        - ./online_rules/trend.txt
+
+  - tag: forward_trend
+    type: "forward"
+    args:
+      concurrent: 2
+      upstreams:
+        - tag: trend tw dns
+          addr: 10.28.6.5
+        - tag: trend nabu dns
+          addr: 10.45.47.1
+
+
   - tag: forward_local
     type: forward
     args:
@@ -135,7 +152,6 @@ plugins:
         exec: reject 0 # DNS-Rcode
 
       # - exec: prefer_ipv4
-
       - matches:
           - '!qname $ddns_domain'
         exec: $mem_cache
@@ -149,6 +165,13 @@ plugins:
         exec: accept
 
       - exec: $host_domain
+      - matches:
+          - has_resp
+        exec: accept
+
+      - matches:
+          - qname $trend_domain
+        exec: $forward_trend
       - matches:
           - has_resp
         exec: accept
