@@ -83,7 +83,7 @@ plugins:
     type: domain_set
     args:
       files:
-        - ./online_rules/trend.txt
+        - ./custom_rules/trend.txt
 
   - tag: forward_trend
     type: "forward"
