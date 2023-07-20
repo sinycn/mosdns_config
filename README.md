@@ -27,7 +27,7 @@ Mosdns config and auto update shell script.
   ```sh
   #!/bin/bash
 
-  mosdnsDir="/volume1/docker/mosdns"         # mosdns dir
+  mosdnsDir="/etc/mosdns"         # mosdns dir
   # create tmp directory
   mkdir -p ${mosdnsDir}/tmp
   echo "########################### start download files ###########################"
